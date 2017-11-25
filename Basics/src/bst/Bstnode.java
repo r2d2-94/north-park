@@ -49,8 +49,32 @@ Node find(Node root,int k)
 	return null;
 }
 
-boolean delete(Node root, int k)
+Node delete(Node root, int k)
 {
-	return false;
+	if(root==null)
+		return root;
+	if(k<root.value)
+		root.left=delete(root.left,k);
+	else if(k>root.value)
+		root.right = delete(root.right,k);
+	else
+	{
+		if(root.left==null)
+			return root.right;
+		else if(root.right == null)
+			return root.left;
+		
+		Node temp= root.right;
+		int min=root.value;
+		while(temp!= null)
+		{
+			temp= temp.left;
+			min=temp.left.value;
+		}
+		
+		root.right=delete(root.right, min);		
+	}
+	return root;
+	
 }
 }

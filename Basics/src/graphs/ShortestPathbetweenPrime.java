@@ -38,7 +38,6 @@ public class ShortestPathbetweenPrime {
 			for(i=0;i<v;i++)
 			{
 				LinkedList vertexList = new LinkedList<Integer>();
-				vertexList.addFirst(i);
 				adjList.add(vertexList);
 			}
 		}
@@ -104,7 +103,7 @@ static boolean hasEdge(int n1, int n2)
 		nonmatches++;
 	}
 	
-	return (nonmatches==1);
+	return nonmatches==1;
 		
 }
 
@@ -134,17 +133,17 @@ static Graph createGraph(List<Integer> primeList)
 
 static int bfs(Graph G, int src , int dest)
 {
-	int count=0;
 	int[] isvisited = new int[G.vertex];
-	 Deque<Integer> queue = new LinkedList();
+	LinkedList<Integer> queue = new LinkedList<Integer>();
 	 queue.addFirst(src);
-	 while(queue.size()!=0)
+	 isvisited[src]=1;
+	 while(!queue.isEmpty())
 	 {
 		
 		int current =  queue.removeFirst();
 		 
 		int i;
-		int element=0;
+		int element;
 		for(i=0;i<G.adjList.get(current).size();i++)
 		{
 			element = G.adjList.get(current).get(i);
